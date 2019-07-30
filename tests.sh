@@ -21,27 +21,22 @@ filename_format=/$bucket/obj$jobname.$jobnum
 http_s3_region=eu-central-1
 unique_filename=1
 group_reporting
+blocksize_range=1k-16k
+size=1M
+io_size=1M
+direct=1
+
 # With verify, this both writes and reads the object
 [create1k]
 numjobs=100
 rw=write
-blocksize_range=1k-16k
-size=1M
-io_size=1M
-direct=1
 [read1k]
-numjobs=100
+stonewall
 rw=randread
-blocksize_range=1k-16k
-size=1M
-io_size=1M
-direct=1
 [trim]
 stonewall
-numjobs=100
 rw=trim
-io_size=1M
-blocksize_range=1k-16k
+
 EOF
 
 fio /tmp/fio-$bucket.fio --output ~/fio-runs/fio-run-$bucket.out
