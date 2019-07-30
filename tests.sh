@@ -25,10 +25,10 @@ blocksize_range=1k-16k
 size=1M
 io_size=1M
 direct=1
+numjobs=100
 
 # With verify, this both writes and reads the object
 [create1k]
-numjobs=100
 rw=write
 [read1k]
 stonewall
