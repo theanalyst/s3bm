@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex
 endpoint=${1:-https://localhost:8000}
-http_host=$(awk -F/ '{print $3}' <<<$x)
+http_host=$(awk -F/ '{print $3}' <<<$endpoint)
 mkdir -p ~/fio-runs/
 bucket=fio`date +'%d%m%H%M'`
 aws s3api create-bucket --bucket $bucket --endpoint=$endpoint
