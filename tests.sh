@@ -1,6 +1,7 @@
 #!/bin/bash
 set -ex
 endpoint=${1:-https://localhost:8000}
+http_host=$(awk -F/ '{print $3}' <<<$x)
 mkdir -p ~/fio-runs/
 bucket=fio`date +'%d%m%H%M'`
 aws s3api create-bucket --bucket $bucket --endpoint=$endpoint
@@ -15,7 +16,7 @@ https=off
 http_mode=s3
 http_s3_key=secret1
 http_s3_keyid=access1
-http_host=$endpoint
+http_host=$http_host
 filename_format=/$bucket/obj$jobname.$jobnum
 http_s3_region=eu-central-1
 unique_filename=1
@@ -48,5 +49,5 @@ fio /tmp/fio-$bucket.fio --output ~/fio-runs/fio-run-$bucket.out
 # poor man's Xattr tests
 echo "logging time for writing 1000 objects with 2 attrs"
 for i in {1..10}; do
-    /usr/bin/time -o ~/fio-runs/time-$bucket.log -a parallel aws s3api put-object --endpoint=http://teuthida-8.ses.suse.de --bucket $bucket --key test-$i-key{} --tagging foo=bar --metadata key=value ::: {1..1000}
+    /usr/bin/time -o ~/fio-runs/time-$bucket.log -a parallel aws s3api put-object --endpoint=$endpoint --bucket $bucket --key test-$i-key{} --tagging foo=bar --metadata key=value ::: {1..1000}
 done
