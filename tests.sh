@@ -44,5 +44,5 @@ fio /tmp/fio-$bucket.fio --output ~/fio-runs/fio-run-$bucket.out
 # poor man's Xattr tests
 echo "logging time for writing 1000 objects with 2 attrs"
 for i in {1..10}; do
-    /usr/bin/time -o ~/fio-runs/time-$bucket.log -a parallel aws s3api put-object --endpoint=$endpoint --bucket $bucket --key test-$i-key{} --tagging foo=bar --metadata key=value ::: {1..1000}
+    /usr/bin/time -o ~/fio-runs/time-$bucket.log -a parallel aws s3api put-object --endpoint=$endpoint --bucket $bucket --key test-$i-key{} --tagging foo=bar --metadata key=value ::: {1..1000} > /dev/null
 done
