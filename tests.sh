@@ -17,7 +17,7 @@ http_mode=s3
 http_s3_key=secret1
 http_s3_keyid=access1
 http_host=$http_host
-filename_format=/$bucket/obj$jobname.$jobnum
+filename_format=/$bucket/obj.$jobnum
 http_s3_region=eu-central-1
 unique_filename=1
 group_reporting
