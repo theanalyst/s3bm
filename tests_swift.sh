@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 if [ -x $(swift --version) ]; then
     echo 'swift cli not found! exiting'
@@ -16,8 +17,8 @@ iosize=100M
 
 for bsize in 64k 32k 16k 8k 4k 1k; do
     bucket=c`date +'%d%m%H%M'`
-    ec=$(swift post -m $bucket)
-    if [ $ec -ne 0 ]; then
+    swift post -m $bucket)
+    if [ $? -ne 0 ]; then
         echo "unable to create container"
         exit 1
     fi
@@ -57,8 +58,8 @@ EOF
 done
 
 bucket=c`date +'%d%m%H%M'`
-ec=$(swift post -m $bucket)
-if [ $ec -ne 0 ]; then
+swift post -m $bucket
+if [ $? -ne 0 ]; then
     echo "unable to create container"
     exit 1
 fi
