@@ -78,7 +78,7 @@ filename_format=/swift/v1/$bucket/obj.\$jobnum
 unique_filename=1
 group_reporting
 bsrange=1k-16k
-size=$size
+size=$iosize
 io_size=$iosize
 direct=1
 numjobs=24
