@@ -17,7 +17,7 @@ iosize=100M
 
 for bsize in 64k 32k 16k 8k 4k 1k; do
     bucket=c`date +'%d%m%H%M'`
-    swift post $bucket)
+    swift post $bucket
     if [ $? -ne 0 ]; then
         echo "unable to create container"
         exit 1
